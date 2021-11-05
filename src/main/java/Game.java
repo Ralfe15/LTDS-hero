@@ -38,21 +38,26 @@ public class Game {
         }
     }
     public void run(){
-        draw();
-        KeyStroke key = null;
-        try {
-            key = screen.readInput();
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (true) {
+            draw();
+            KeyStroke key = null;
+            try {
+                key = screen.readInput();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            processKey(key);
         }
-        processKey(key);
-
 
     }
     private void processKey(KeyStroke key) {
-        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
-            System.out.println(key.getCharacter());
+        switch (key.getKeyType()){
+            case ArrowUp: this.y-=1; break;
+            case ArrowDown: this.y+=1; break;
+            case ArrowLeft: this.x-=1; break;
+            case ArrowRight: this.x+=1; break;
+            default: break;
+
         }
-            System.out.println(key);
     }
 }
