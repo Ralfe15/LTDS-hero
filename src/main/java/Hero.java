@@ -29,10 +29,9 @@ public class Hero {
         return new Position(position.getX()+1, position.getY());
     }
     public void draw(TextGraphics graphics){
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(10, 10), ' ');
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.setCharacter(getX(), getY(), TextCharacter.fromCharacter('R')[0]);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "R");
 
 
     }
