@@ -1,20 +1,26 @@
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Wall {
-    public Position position;
+public class Wall extends Element{
     Wall(int x, int y){
-        this.position = new Position(x,y);
+        super(new Position(x,y));
+
+
     }
-    public int getY() {
-        return position.getY();
-    }
-    public int getX() {
-        return position.getX();
-    }
-    public void draw(TextGraphics graphics){
+    void draw(TextGraphics graphics){
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
 
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null) return false;
+
+        if (getClass() != o.getClass()) return false;
+
+        Position p = (Position) o;
+        return position.getX() == p.getX() && position.getY() == p.getY();
     }
 }
 

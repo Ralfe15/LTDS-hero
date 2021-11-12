@@ -7,11 +7,13 @@ import com.googlecode.lanterna.screen.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private final int width;
     private final int height;
     private List<Wall> walls;
+    private List<Coin> coins;
     public Hero hero;
 
     Arena(int width, int height){
@@ -19,6 +21,7 @@ public class Arena {
         this.width = width;
         this.hero = new Hero(new Position(10,10));
         this.walls = createWalls();
+        this.coins = createCoins();
     }
 
     public int getWidth() {
@@ -27,6 +30,7 @@ public class Arena {
     public int getHeight() {
         return height;
     }
+
     public boolean canMoveHero(Position position){
         if(position.getY() < 0 || position.getY() >= height){
             return false;
@@ -35,7 +39,8 @@ public class Arena {
             return false;
         }
         for(Wall wall: walls){
-            if(wall.getX() == position.getX() && wall.getY() == position.getY()){
+           // if(wall.getX() == position.getX() && wall.getY() == position.getY()){
+            if(wall.getPosition().equals(position)){
                 return false;
             }
         }
@@ -43,6 +48,7 @@ public class Arena {
     }
     public void moveHero(Position position){
         if(canMoveHero(position)) {
+            retrieveCoins(position);
             hero.setPosition(position);
         }
     }
@@ -57,11 +63,22 @@ public class Arena {
         }
     }
 
+    public void retrieveCoins(Position position){
+        for(int i = 0; i<coins.size();i++){
+            if(position.getX()== coins.get(i).getX() && position.getY() == coins.get(i).getY()){
+                coins.remove(i);
+            }
+        }
+    }
+
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(40, 20), ' ');
         for(Wall wall: walls){
             wall.draw(graphics);
+        }
+        for(Coin coin: coins){
+            coin.draw(graphics);
         }
         hero.draw(graphics);
     }
@@ -79,6 +96,13 @@ public class Arena {
         }
 
         return walls;
+    }
+    private List<Coin> createCoins() {
+        Random random = new Random();
+        ArrayList<Coin> coins = new ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            coins.add(new Coin(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
+        return coins;
     }
     }
 

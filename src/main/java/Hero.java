@@ -2,19 +2,11 @@ import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
-    private Position position;
-
+public class Hero extends Element{
     Hero(Position position){
-        this.position = position;
+        super(position);
     }
 
-    public int getY() {
-        return position.getY();
-    }
-    public int getX() {
-        return position.getX();
-    }
     public void setPosition(Position position){
         this.position = position;
     }
