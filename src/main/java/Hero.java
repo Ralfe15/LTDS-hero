@@ -3,8 +3,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Hero extends Element{
+    boolean isAlive;
     Hero(Position position){
         super(position);
+        isAlive = true;
     }
 
     public void setPosition(Position position){
@@ -19,6 +21,9 @@ public class Hero extends Element{
     }
     public Position moveRight(){
         return new Position(position.getX()+1, position.getY());
+    }
+    public void die(){
+        isAlive = false;
     }
     public void draw(TextGraphics graphics){
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));

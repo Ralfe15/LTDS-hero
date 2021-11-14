@@ -41,8 +41,8 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public void run(){
-        while (true) {
+    public void run() throws IOException {
+        while (arena.hero.isAlive) {
             draw();
             KeyStroke key = null;
             try {
@@ -52,6 +52,7 @@ public class Game {
             }
             processKey(key);
         }
+        screen.stopScreen();
 
     }
 
