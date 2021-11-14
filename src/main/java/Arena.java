@@ -66,7 +66,7 @@ public class Arena {
 
     public void moveHero(Position position) {
         if (canMoveHero(position)) {
-            monsterCollision(position);
+            verifyMonsterCollisions(position);
             for(Monster monster: monsters){
                 Position newpos = monster.move();
                 while(!canMoveMonster(newpos)){
@@ -109,7 +109,7 @@ public class Arena {
         }
     }
 
-    public void monsterCollision(Position position) {
+    public void verifyMonsterCollisions(Position position) {
         for (int i = 0; i < monsters.size(); i++) {
             if (position.getX() == monsters.get(i).getX() && position.getY() == monsters.get(i).getY()) {
                 hero.die();
