@@ -74,7 +74,7 @@ public class Arena {
                 }
                 monster.setPosition(newpos);
                 }
-
+            verifyMonsterCollisions(position);
             retrieveCoins(position);
             hero.setPosition(position);
         }
