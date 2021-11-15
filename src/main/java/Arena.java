@@ -41,8 +41,7 @@ public class Arena {
             return false;
         }
         for (Wall wall : walls) {
-            if (wall.getX() == position.getX() && wall.getY() == position.getY()) {
-//            if(wall.getPosition().equals(position)){
+            if(wall.getPosition().equals(position)){
                 return false;
             }
         }
@@ -56,8 +55,7 @@ public class Arena {
             return false;
         }
         for (Wall wall : walls) {
-            if (wall.getX() == position.getX() && wall.getY() == position.getY()) {
-//            if(wall.getPosition().equals(position)){
+            if (wall.getPosition().equals(position)) {
                 return false;
             }
         }
@@ -103,7 +101,7 @@ public class Arena {
 
     public void retrieveCoins(Position position) {
         for (int i = 0; i < coins.size(); i++) {
-            if (position.getX() == coins.get(i).getX() && position.getY() == coins.get(i).getY()) {
+            if (position.equals(coins.get(i).getPosition())) {
                 coins.remove(i);
             }
         }
@@ -111,7 +109,7 @@ public class Arena {
 
     public void verifyMonsterCollisions(Position position) {
         for (int i = 0; i < monsters.size(); i++) {
-            if (position.getX() == monsters.get(i).getX() && position.getY() == monsters.get(i).getY()) {
+            if (position.equals(monsters.get(i).getPosition())) {
                 hero.die();
             }
         }

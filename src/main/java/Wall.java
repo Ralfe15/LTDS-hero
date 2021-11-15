@@ -9,16 +9,6 @@ public class Wall extends Element{
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
 
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
 
-        if (o == null) return false;
-
-        if (getClass() != o.getClass()) return false;
-
-        Position p = (Position) o;
-        return this.position.getX() == p.getX() && this.position.getY() == p.getY();
-    }
 }
 
